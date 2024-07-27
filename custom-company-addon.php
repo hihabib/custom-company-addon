@@ -14,6 +14,10 @@
 define("CUSTOM_COMPANY_ADDON_PLUGIN_DIR", plugin_dir_url(__FILE__));
 define("CUSTOM_COMPANY_ADDON_VERSION", time());
 
-require_once __DIR__ . "/class/Scripts.php";
+if(is_singular('company')) :
 
-new CustomCompanyAddonScript();
+    require_once __DIR__ . "/class/Scripts.php";
+
+    new CustomCompanyAddonScript();
+
+endif;

@@ -10,7 +10,11 @@ class CustomCompanyAddon {
         console.log(ratingLength)
         icons.forEach(icon => {
             const isRated = icon.classList.contains("rated")
-            if(isRated){
+            if(isRated && ratingLength <= 2){
+                icon.classList.add('red-rating');
+            } else if(isRated && ratingLength <= 3){
+                icon.classList.add('orange-rating');
+            } else if(isRated && ratingLength <= 5){
                 icon.classList.add('green-rating');
             } else {
                 icon.classList.add('gray-rating');

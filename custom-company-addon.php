@@ -20,8 +20,10 @@ function custom_company_addon(){
     if(is_singular('company')) :
 
         require_once __DIR__ . "/class/Scripts.php";
+        require_once __DIR__ . "/class/NanoShortCodes.php";
 
         new CustomCompanyAddonScript();
+        new CustomCompanyAddonNanoShortCodes();
 
     endif;
 }

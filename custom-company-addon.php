@@ -14,6 +14,7 @@
 define("CUSTOM_COMPANY_ADDON_PLUGIN_DIR", plugin_dir_url(__FILE__));
 define("CUSTOM_COMPANY_ADDON_VERSION", time());
 
+var_export(is_singular('company'));
 if(is_singular('company')) :
 
     require_once __DIR__ . "/class/Scripts.php";

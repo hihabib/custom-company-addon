@@ -14,7 +14,7 @@ class CustomCompanyAddonNanoShortCodes
      */
     public static function get_review_quantities(){
         add_shortcode("get_comments_number", function(){
-            echo "<div class='review-description-header-custom-company-addon'> Reviews" . get_comments_number() . "  •  </div>";
+            echo "<div class='review-description-header-custom-company-addon'> Reviews " . get_comments_number() . "&nbsp;&nbsp;•&nbsp;&nbsp;</div>";
         });
     }
 }

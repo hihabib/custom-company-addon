@@ -43,17 +43,21 @@ class CustomCompanyAddon {
         })
     }
 
+    /**
+     * Add rating Tag after rating number
+     * `Below Average`, `Average`, `Great`, `Excellent`
+     */
     addRatingTag(){
         const ratingLength = this.averageRatingLength();
         const reviewDescription =document.querySelector('.review-description-header-custom-company-addon');
         if(ratingLength <= 2){
-            reviewDescription.innerText += "Below Average";
+            reviewDescription.innerText += " Below Average";
         } else if(ratingLength <= 3){
-            reviewDescription.innerText += "Average";
+            reviewDescription.innerText += " Average";
         } else if(ratingLength <= 4){
-            reviewDescription.innerText += "Great";
+            reviewDescription.innerText += " Great";
         } else {
-            reviewDescription.innerText += "Excellent";
+            reviewDescription.innerText += " Excellent";
         }
     }
 }

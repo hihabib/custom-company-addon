@@ -6,8 +6,9 @@ class CustomCompanyAddon {
     ratingIconBeautify(){
         const iconsContainer = document.querySelector(".rating-stars");
         const icons = iconsContainer.querySelectorAll('.fa.stars-style-solid');
+        // calculate total average rating
         const ratingLength = Array.from(icons).reduce((acc, next) => next.classList.contains('rated') ? ++acc : acc, 0);
-        console.log(ratingLength)
+        // add classes for styling.
         icons.forEach(icon => {
             const isRated = icon.classList.contains("rated")
             if(isRated && ratingLength <= 2){

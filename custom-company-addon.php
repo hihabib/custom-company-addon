@@ -14,11 +14,16 @@
 define("CUSTOM_COMPANY_ADDON_PLUGIN_DIR", plugin_dir_url(__FILE__));
 define("CUSTOM_COMPANY_ADDON_VERSION", time());
 
-var_export(is_singular('company'));
-if(is_singular('company')) :
+add_action('wp', 'custom_company_addon');
 
-    require_once __DIR__ . "/class/Scripts.php";
+function custom_company_addon(){
+    var_export(is_singular('company'));
 
-    new CustomCompanyAddonScript();
+    if(is_singular('company')) :
 
-endif;
+        require_once __DIR__ . "/class/Scripts.php";
+
+        new CustomCompanyAddonScript();
+
+    endif;
+}

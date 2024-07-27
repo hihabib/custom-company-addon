@@ -17,8 +17,6 @@ define("CUSTOM_COMPANY_ADDON_VERSION", time());
 add_action('wp', 'custom_company_addon');
 
 function custom_company_addon(){
-    var_export(is_singular('company'));
-
     if(is_singular('company')) :
 
         require_once __DIR__ . "/class/Scripts.php";

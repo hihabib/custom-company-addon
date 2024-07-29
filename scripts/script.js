@@ -15,10 +15,13 @@ class CustomCompanyAddon {
     /**
      * Rating Icons
      * fontawesome i elements
-     * @returns {NodeListOf<Element>[]}
+     * @returns {array}
      */
     ratingIconsNodeList() {
-        const iconsContainer = document.querySelectorAll(this.iconsContainerSelector);
+        /**
+         * @type {array}
+         */
+        const iconsContainer = Array.from(document.querySelectorAll(this.iconsContainerSelector));
         return iconsContainer.reduce((acc, next) => {
             acc.push(next.querySelectorAll('.fa.stars-style-solid'));
             return acc;

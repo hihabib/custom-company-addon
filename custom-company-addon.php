@@ -11,6 +11,7 @@
 * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 * Text Domain:       custom-comapny-addon-habib
 */
+define("VERSION", time());
 define("CUSTOM_COMPANY_ADDON_PLUGIN_DIR", plugin_dir_url(__FILE__));
 define("CUSTOM_COMPANY_ADDON_VERSION", time());
 

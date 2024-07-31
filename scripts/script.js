@@ -26,9 +26,13 @@ class CustomCompanyAddon {
 
     iconsContainerLoad() {
         return new Promise((resolve) => {
-            setTimeout(() => {
+            let intervalId = 0;
+            intervalId = setInterval(() => {
                 try {
-                    document.querySelector(this.iconsContainerSelector).addEventListener('DOMContentLoaded', resolve);
+                    document.querySelector(this.iconsContainerSelector).addEventListener('DOMContentLoaded', () => {
+                        clearInterval(intervalId);
+                        resolve();
+                    });
                 } catch (err) {
                 }
             }, 1000)

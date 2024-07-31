@@ -100,7 +100,7 @@ class CustomCompanyAddon {
         if (this.isHeader) {
             const ratingLength = this.averageRatingLength(0);
             const reviewDescription = document.querySelector('.stars-avg-rating .rating-text');
-            reviewDescription.innerText += "&nbsp;&nbsp;•&nbsp;&nbsp;";
+            reviewDescription.innerHTML += "&nbsp;&nbsp;•&nbsp;&nbsp;";
             if (ratingLength <= 2) {
                 reviewDescription.innerText += "Below Average";
             } else if (ratingLength <= 3) {

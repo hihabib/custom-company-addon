@@ -100,14 +100,15 @@ class CustomCompanyAddon {
         if (this.isHeader) {
             const ratingLength = this.averageRatingLength(0);
             const reviewDescription = document.querySelector('.stars-avg-rating .rating-text');
+            reviewDescription.innerText += "&nbsp;&nbsp;•&nbsp;&nbsp;";
             if (ratingLength <= 2) {
-                reviewDescription.innerText += "&nbsp;&nbsp;•&nbsp;&nbsp;Below Average";
+                reviewDescription.innerText += "Below Average";
             } else if (ratingLength <= 3) {
-                reviewDescription.innerText += "&nbsp;&nbsp;•&nbsp;&nbsp;Average";
+                reviewDescription.innerText += "Average";
             } else if (ratingLength <= 4) {
-                reviewDescription.innerText += "&nbsp;&nbsp;•&nbsp;&nbsp;Great";
+                reviewDescription.innerText += "Great";
             } else {
-                reviewDescription.innerText += "&nbsp;&nbsp;•&nbsp;&nbsp;Excellent";
+                reviewDescription.innerText += "Excellent";
             }
         }
     }

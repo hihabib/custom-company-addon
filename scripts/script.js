@@ -3,13 +3,17 @@ class CustomCompanyAddon {
     isHeader = false;
 
     constructor(iconsContainerSelector, isHeader) {
+        // Set values to instance variables
         this.iconsContainerSelector = iconsContainerSelector;
         this.isHeader = isHeader;
 
-        this.ratingIconBeautify();
-        // Add Rating tag in header
-        this.addRatingTag();
-
+        // is iconsContainerSelector is valid
+        if(document.querySelector(iconsContainerSelector)){
+            // Beautify Rating Icons
+            this.ratingIconBeautify();
+            // Add Rating tag in header
+            this.addRatingTag();
+        }
     }
 
     /**
@@ -40,6 +44,7 @@ class CustomCompanyAddon {
 
     /**
      * Top rating beatification
+     * @returns {void}
      */
     ratingIconBeautify() {
         const iconsContainer = this.ratingIconsNodeList();
@@ -65,6 +70,7 @@ class CustomCompanyAddon {
      * Add rating Tag after rating number
      * Only for Header
      * `Below Average`, `Average`, `Great`, `Excellent`
+     * @returns {void}
      */
     addRatingTag() {
         if (this.isHeader) {

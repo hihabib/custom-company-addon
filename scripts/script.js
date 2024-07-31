@@ -29,10 +29,10 @@ class CustomCompanyAddon {
             let intervalId = 0;
             intervalId = setInterval(() => {
                 try {
-                    document.querySelector(this.iconsContainerSelector).addEventListener('DOMContentLoaded', () => {
+                    if(document.querySelector(this.iconsContainerSelector) !== null){
                         clearInterval(intervalId);
                         resolve();
-                    });
+                    }
                 } catch (err) {
                 }
             }, 1000)

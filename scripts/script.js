@@ -12,13 +12,28 @@ class CustomCompanyAddon {
         this.iconsContainerSelector = iconsContainerSelector;
         this.isHeader = isHeader;
 
+
         // is iconsContainerSelector is valid
-        if(document.querySelector(iconsContainerSelector)){
-            // Beautify Rating Icons
-            this.ratingIconBeautify();
-            // Add Rating tag in header
-            this.addRatingTag();
-        }
+        this.iconsContainerLoad()
+            .then(() => {
+                // Beautify Rating Icons
+                this.ratingIconBeautify();
+                // Add Rating tag in header
+                this.addRatingTag();
+            })
+
+    }
+
+    iconsContainerLoad() {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                try {
+                    document.querySelector(this.iconsContainerSelector).addEventListener('DOMContentLoaded', resolve);
+                } catch (err) {
+                }
+            }, 1000)
+
+        });
     }
 
     /**
@@ -93,8 +108,9 @@ class CustomCompanyAddon {
         }
     }
 }
+
 // Single Page
-if(!Boolean(pageInfo.isArchive)){
+if (!Boolean(pageInfo.isArchive)) {
     // Header
     new CustomCompanyAddon(".rating-stars", true);
     // Reviews

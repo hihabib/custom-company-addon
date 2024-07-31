@@ -2,6 +2,11 @@ class CustomCompanyAddon {
     iconsContainerSelector = "";
     isHeader = false;
 
+    /**
+     * CustomCompanyAddon Class Constructor
+     * @param iconsContainerSelector
+     * @param isHeader
+     */
     constructor(iconsContainerSelector, isHeader) {
         // Set values to instance variables
         this.iconsContainerSelector = iconsContainerSelector;
@@ -21,7 +26,7 @@ class CustomCompanyAddon {
      * fontawesome i elements
      * @returns {array}
      */
-    ratingIconsNodeList() {
+    ratingIconsArrayList() {
         /**
          * @type {array}
          */
@@ -38,7 +43,7 @@ class CustomCompanyAddon {
      * @returns {number}
      */
     averageRatingLength(index) {
-        const icons = this.ratingIconsNodeList()[index];
+        const icons = this.ratingIconsArrayList()[index];
         return Array.from(icons).reduce((acc, next) => next.classList.contains('rated') ? ++acc : acc, 0);
     }
 
@@ -47,7 +52,7 @@ class CustomCompanyAddon {
      * @returns {void}
      */
     ratingIconBeautify() {
-        const iconsContainer = this.ratingIconsNodeList();
+        const iconsContainer = this.ratingIconsArrayList();
         // add classes for styling.
         iconsContainer.forEach((icons, index) => {
             const ratingLength = this.averageRatingLength(index);
@@ -88,9 +93,13 @@ class CustomCompanyAddon {
         }
     }
 }
+// Single Page
+if(!Boolean(pageInfo.isArchive)){
+    // Header
+    new CustomCompanyAddon(".rating-stars", true);
+    // Reviews
+    new CustomCompanyAddon(".comment-list .rating-stars", false);
+} else { // archive page
+    new CustomCompanyAddon(".rating-stars", false);
+}
 
-// Header
-new CustomCompanyAddon(".rating-stars", true);
-
-// Reviews
-new CustomCompanyAddon(".comment-list .rating-stars", false);

@@ -19,7 +19,7 @@ add_action('wp', 'custom_company_addon');
 
 function custom_company_addon()
 {
-    if ((isset($_GET['action']) && $_GET['action'] === 'elementor') || is_singular('company') || is_post_type_archive('company')) :
+    if (is_singular('company') || is_post_type_archive('company')) :
 
         require_once __DIR__ . "/class/Scripts.php";
         require_once __DIR__ . "/class/NanoShortCodes.php";

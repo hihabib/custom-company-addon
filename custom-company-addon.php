@@ -15,16 +15,22 @@ define("VERSION", time());
 define("CUSTOM_COMPANY_ADDON_PLUGIN_DIR", plugin_dir_url(__FILE__));
 define("CUSTOM_COMPANY_ADDON_VERSION", time());
 
-add_action('wp', 'custom_company_addon');
 
+require_once __DIR__ . "/class/Company.php";
+new CustomCompanyAddonCompany();
+
+
+add_action('wp', 'custom_company_addon');
 function custom_company_addon()
 {
+    require_once __DIR__ . "/class/Scripts.php";
+    new CustomCompanyAddonScript();
+
+
+
+
     if (is_singular('company') || is_post_type_archive('company')) :
-
-        require_once __DIR__ . "/class/Scripts.php";
         require_once __DIR__ . "/class/NanoShortCodes.php";
-
-        new CustomCompanyAddonScript();
         new CustomCompanyAddonNanoShortCodes();
 
     endif;

@@ -5,9 +5,19 @@ class CustomCompanyAddonScript {
     }
 
     public function scripts() {
-        wp_enqueue_script('custom-company-addon-script', CUSTOM_COMPANY_ADDON_PLUGIN_DIR . "/scripts/script.js", [], CUSTOM_COMPANY_ADDON_VERSION, false);
-        wp_localize_script('custom-company-addon-script','pageInfo', [
-            'isArchive' => is_post_type_archive('company')
-        ]);
+        if (is_singular('company') || is_post_type_archive('company')){
+            wp_enqueue_script('custom-company-addon-script', CUSTOM_COMPANY_ADDON_PLUGIN_DIR . "/scripts/script.js", [], CUSTOM_COMPANY_ADDON_VERSION, false);
+            wp_localize_script('custom-company-addon-script','pageInfo', [
+                'isArchive' => is_post_type_archive('company')
+            ]);
+        }
+
+        wp_enqueue_script('company-search', CUSTOM_COMPANY_ADDON_PLUGIN_DIR . "/scripts/search-company.js", [], CUSTOM_COMPANY_ADDON_VERSION, true);
+        wp_localize_script('company-search', 'pageInfo', [
+                'ajaxUrl' => admin_url('admin-ajax.php'),
+                'nonce' => wp_create_nonce('search_company')
+            ]
+        );
     }
+
 }

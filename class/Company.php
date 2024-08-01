@@ -11,7 +11,7 @@ class CustomCompanyAddonCompany
         add_shortcode('company_search_form', [$this, 'search_form_shortcode']);
 
         // Elementor new company submission manupulate
-        add_action('elementor_pro/forms/new_record', [$this, 'create_new_company_from_elementor_submission'], 10, 2);
+        add_action('elementor_pro/forms/new_record', [$this, 'handle_elementor_new_company_from_submission'], 10, 2);
     }
 
     /**
@@ -99,7 +99,13 @@ class CustomCompanyAddonCompany
         return ob_get_clean();
     }
 
-    public function create_new_company_from_elementor_submission($record, $handler)
+    /**
+     * Handle Create new company by elementor form submission
+     * @param $record
+     * @param $handler
+     * @return void
+     */
+    public function handle_elementor_new_company_from_submission($record, $handler)
     {
         // Get the form ID from the submitted record
         $form_id = $record->get_form_settings('id');
@@ -108,8 +114,125 @@ class CustomCompanyAddonCompany
         file_put_contents(__DIR__ ."/test.log", print_r($fields, true));
         // Check if this is the form you want to target
         // Get submitted fields data
-        file_put_contents(__DIR__ ."/test.log", print_r(['formID' => $form_id], true), FILE_APPEND);
+        if($form_id === 'e4e3bff'){
 
+        }
+
+    }
+
+    public function create_new_company($post_data){
+        // Create post object
+        $post_args = array(
+            'post_title'    => wp_strip_all_tags($post_data['title']),
+            'post_content'  => $post_data['content'],
+            'post_status'   => 'draft',
+            'post_author'   => $post_data['user_id'],
+            'post_type'     => 'company',
+            'post_excerpt'  => $post_data['excerpt'],
+        );
+
+        // Insert the post into the database
+        $post_id = wp_insert_post($post_args);
+
+        // Add custom fields using ACF
+        if ($post_id && !is_wp_error($post_id)) {
+            foreach ($post_data['custom_fields'] as $key => $value) {
+                update_field($key, $value, $post_id);
+            }
+
+            // Upload and set the featured image
+            $image_url = $post_data['image_url'];
+            $image_id = upload_image_by_url($image_url);
+            if (!is_wp_error($image_id)) {
+                set_post_thumbnail($post_id, $image_id);
+            }
+        }
+
+        return $post_id;
+    }
+
+
+    /**
+     * Upload image from URL and set as product thumbnail
+     *
+     * @param string $image_url
+     *
+     * @return int|WP_Error Attachment ID on success, WP_Error on failure.
+     */
+    public function upload_image_by_url(string $image_url)
+    {
+        // Ensure the URL is valid
+        if (!filter_var($image_url, FILTER_VALIDATE_URL)) {
+            return new WP_Error('invalid_url', 'Invalid URL provided');
+        }
+
+        // Download the image to a temporary location
+        $temp_file = download_url($image_url);
+
+        if (is_wp_error($temp_file)) {
+            error_log('Download error: ' . $temp_file->get_error_message());
+
+            return new WP_Error('download_error', 'Failed to download image');
+        }
+
+        $image_name = basename($image_url);
+        // Parse the URL and extract the path
+        $path = parse_url($image_url, PHP_URL_PATH);
+        // Get the file extension from the path
+        $extension = pathinfo($path, PATHINFO_EXTENSION);
+        $file_array = [
+            'name' => $image_name . ".". $extension,
+            'tmp_name' => $temp_file,
+        ];
+
+        // Check the type of the file. We'll use this as the 'post_mime_type'.
+        $file_type = wp_check_filetype($file_array['name'], null);
+
+        if (!getimagesize($file_array["tmp_name"])) {
+            // If the file type is not allowed, return an error and delete the temporary file
+            unlink($temp_file);
+
+            return new WP_Error('upload_error', 'Sorry, you are not allowed to upload this file type.');
+        }
+
+        // Upload the file to the WordPress media library
+        $upload = wp_handle_sideload($file_array, ['test_form' => false]);
+
+        if (is_wp_error($upload)) {
+            error_log('Upload error: ' . $upload->get_error_message());
+
+            return new WP_Error('upload_error', $upload->get_error_message());
+        }
+
+        // Get the file path and URL
+        $file_path = $upload['file'];
+        $file_url = $upload['url'];
+
+        // Create an attachment post for the image
+        $attachment = [
+            'guid' => $file_url,
+            'post_mime_type' => $file_type['type'],
+            'post_title' => sanitize_file_name($image_name),
+            'post_content' => '',
+            'post_status' => 'inherit',
+        ];
+
+        // Insert the attachment post into the database
+        $attachment_id = wp_insert_attachment($attachment, $file_path);
+
+        // Include the necessary WordPress files to process the attachment
+        require_once(ABSPATH . 'wp-admin/includes/image.php');
+        require_once(ABSPATH . 'wp-admin/includes/file.php');
+        require_once(ABSPATH . 'wp-admin/includes/media.php');
+
+        // Generate the attachment metadata and update the database record
+        $attachment_data = wp_generate_attachment_metadata($attachment_id, $file_path);
+        wp_update_attachment_metadata($attachment_id, $attachment_data);
+
+        // Delete the temporary file
+        @unlink($temp_file);
+
+        return $attachment_id;
     }
 }
 

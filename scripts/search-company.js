@@ -55,11 +55,11 @@ function addResults(companies) {
             li.innerHTML = `
                         <div>
                             <div>
-                                <img src="${thumbnailUrl}" alt="">
+                                <a href="${permalink}"><img src="${thumbnailUrl}" alt=""></a>
                             </div>
                             <div>
                                 <a href="${permalink}"><h4>${title}</h4></a>
-                                <p>${exceprt}</p>
+                                <a href="${permalink}"><p>${exceprt}</p></a>
                             </div>
                         </div>
                     `;

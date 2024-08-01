@@ -6,6 +6,9 @@ class CustomCompanyAddonCompany
     {
         add_action("wp_ajax_search_company", [$this, 'get_search_results']);
         add_action("wp_ajax_nopriv_search_company", [$this, 'get_search_results']);
+
+        // shortcode: [company_search_form]
+        add_shortcode('company_search_form', [$this, 'search_form_shortcode']);
     }
 
 

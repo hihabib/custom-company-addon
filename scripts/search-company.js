@@ -1,18 +1,19 @@
 /**
- * @type {HTMLInputElement}
+ * @type {HTMLInputElement | null}
  */
 const companySearchInput = document.querySelector('#company_search_form input');
-companySearchInput.addEventListener('input', (e) => {
-    (async () => {
-        /**
-         * @type {function(...[*]): Promise<Object>}
-         */
-        const getResult = debounce(searchCompany, 500);
-        const result = await getResult(e.target.value);
-        console.log(result)
-    })()
-})
-
+if (companySearchInput !== null) {
+    companySearchInput.addEventListener('input', (e) => {
+        (async () => {
+            /**
+             * @type {function(...[*]): Promise<Object>}
+             */
+            const getResult = debounce(searchCompany, 500);
+            const result = await getResult(e.target.value);
+            console.log(result)
+        })()
+    })
+}
 
 /**
  * Debounce search input
@@ -31,11 +32,12 @@ function debounce(fn, delay = 1000) {
         });
     };
 };
+
 /**
  * Get Company Search Result
  * @returns {Promise<object>}
  */
-async function searchCompany(searchQuery){
+async function searchCompany(searchQuery) {
     const res = await fetch(pageInfo.ajaxUrl, {
         'method': 'post',
         'body': (() => {

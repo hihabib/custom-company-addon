@@ -9,8 +9,10 @@ class CustomCompanyAddonCompany
 
         // shortcode: [company_search_form]
         add_shortcode('company_search_form', [$this, 'search_form_shortcode']);
-    }
 
+        // Elementor new company submission manupulate
+        add_action('elementor_pro/forms/new_record', [$this, 'create_new_company_from_elementor_submission'], 10, 2);
+    }
 
     /**
      * Ajax call for company search result
@@ -20,8 +22,8 @@ class CustomCompanyAddonCompany
     {
         $query = $_POST['search_query'];
         $nonce = $_POST['nonce'];
-        if(!wp_verify_nonce($nonce, 'search_company')){
-            echo ['error'=>"nonce verification failed"];
+        if (!wp_verify_nonce($nonce, 'search_company')) {
+            echo ['error' => "nonce verification failed"];
         }
         $results = self::search_company($query);
         echo json_encode($results);
@@ -65,14 +67,19 @@ class CustomCompanyAddonCompany
             $formatted_result = [];
             $formatted_result['thumbnailUrl'] = wp_get_attachment_image_url($result->thumbnail_id, $thumbnail_size);
             $formatted_result['title'] = $result->post_title;
-            $formatted_result['exceprt'] =  $result->post_excerpt;
+            $formatted_result['exceprt'] = $result->post_excerpt;
             $formatted_result['permalink'] = get_permalink($result->ID);
             $formatted_results[] = $formatted_result;
         }
         return $formatted_results;
     }
 
-    public function search_form_shortcode(){
+    /**
+     * Search form Shortcode
+     * @return false|string
+     */
+    public function search_form_shortcode()
+    {
         ob_start();
         ?>
         <div class="company_search_container">
@@ -88,8 +95,24 @@ class CustomCompanyAddonCompany
             </div>
         </div>
 
-    <?php
+        <?php
         return ob_get_clean();
+    }
+
+    public function create_new_company_from_elementor_submission($record, $handler)
+    {
+        // Get the form ID from the submitted record
+        $form_id = $record->get_form_settings('id');
+
+        // Check if this is the form you want to target
+        if ($form_id === 'submit_new_company') {
+            // Get submitted fields data
+            $fields = $record->get('fields');
+
+            print_r($fields);
+
+        }
+
     }
 }
 

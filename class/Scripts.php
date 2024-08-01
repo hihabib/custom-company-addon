@@ -15,7 +15,8 @@ class CustomCompanyAddonScript {
         wp_enqueue_script('company-search', CUSTOM_COMPANY_ADDON_PLUGIN_DIR . "/scripts/search-company.js", [], CUSTOM_COMPANY_ADDON_VERSION, true);
         wp_localize_script('company-search', 'pageInfo', [
                 'ajaxUrl' => admin_url('admin-ajax.php'),
-                'nonce' => wp_create_nonce('search_company')
+                'nonce' => wp_create_nonce('search_company'),
+                'notFoundShortcodeHTML' => do_shortcode('[elementor-template id="6692"]')
             ]
         );
     }

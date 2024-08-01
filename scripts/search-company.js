@@ -78,7 +78,7 @@ function addResults(companies) {
             // Not found
             companySearchResult.innerHTML = `
                 <li>
-                    <span class="company-search-loading">No Company Found. :(</span>
+                    ${pageInfo.notFoundShortcodeHTML}
                 </li>`;
         }
 

@@ -10,8 +10,10 @@ class CustomCompanyAddonCompany
         // shortcode: [company_search_form]
         add_shortcode('company_search_form', [$this, 'search_form_shortcode']);
 
-        // Elementor new company submission manupulate
-        add_action('elementor_pro/forms/new_record', [$this, 'create_new_company_from_elementor_submission'], 10, 2);
+        add_action('wp', function(){
+            // Elementor new company submission manupulate
+            add_action('elementor_pro/forms/new_record', [$this, 'create_new_company_from_elementor_submission'], 10, 2);
+        });
     }
 
     /**

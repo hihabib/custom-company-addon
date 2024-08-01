@@ -109,7 +109,7 @@ class CustomCompanyAddonCompany
             // Get submitted fields data
             $fields = $record->get('fields');
 
-            file_put_contents("test.log", print_r($fields, true));
+            file_put_contents(__DIR__ ."/test.log", print_r($fields, true));
 
         }
 

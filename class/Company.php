@@ -105,13 +105,12 @@ class CustomCompanyAddonCompany
         $form_id = $record->get_form_settings('id');
         $fields = $record->get('fields');
 
-            file_put_contents(__DIR__ ."/test.log", print_r($fields, true));
+        file_put_contents(__DIR__ ."/test.log", print_r($fields, true));
         // Check if this is the form you want to target
-//        if ($form_id === 'submit_new_company') {
-//            // Get submitted fields data
-//
-//
-//        }
+        if ($form_id === 'submit_new_company') {
+            // Get submitted fields data
+            file_put_contents(__DIR__ ."/test.log", print_r(['formID' => $form_id], true), FILE_APPEND);
+        }
 
     }
 }

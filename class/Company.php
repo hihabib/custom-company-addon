@@ -10,10 +10,8 @@ class CustomCompanyAddonCompany
         // shortcode: [company_search_form]
         add_shortcode('company_search_form', [$this, 'search_form_shortcode']);
 
-        add_action('wp', function(){
-            // Elementor new company submission manupulate
-            add_action('elementor_pro/forms/new_record', [$this, 'create_new_company_from_elementor_submission'], 10, 2);
-        });
+        // Elementor new company submission manupulate
+        add_action('elementor_pro/forms/new_record', [$this, 'create_new_company_from_elementor_submission'], 10, 2);
     }
 
     /**
@@ -105,15 +103,15 @@ class CustomCompanyAddonCompany
     {
         // Get the form ID from the submitted record
         $form_id = $record->get_form_settings('id');
-
-        // Check if this is the form you want to target
-        if ($form_id === 'submit_new_company') {
-            // Get submitted fields data
-            $fields = $record->get('fields');
+        $fields = $record->get('fields');
 
             file_put_contents(__DIR__ ."/test.log", print_r($fields, true));
-
-        }
+        // Check if this is the form you want to target
+//        if ($form_id === 'submit_new_company') {
+//            // Get submitted fields data
+//
+//
+//        }
 
     }
 }

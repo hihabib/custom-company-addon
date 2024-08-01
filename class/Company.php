@@ -62,7 +62,7 @@ class CustomCompanyAddonCompany
         $formatted_results = [];
         foreach ($results as $result) {
             $formatted_result = [];
-            $formatted_result['thumbnailUrl'] = wp_get_attachment_image_url($result->thumbnail_id, $thumbnail_size);
+            $formatted_result['thumbnailUrl'] = wp_get_attachment_image_url($result->thumbnail_id, [100, 100]);
             $formatted_result['title'] = $result->post_title;
             $formatted_result['exceprt'] =  $result->post_excerpt;
             $formatted_result['permalink'] = get_permalink($result->ID);

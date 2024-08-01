@@ -74,9 +74,16 @@ class CustomCompanyAddonCompany
         ob_start();
         ?>
         <div class="company_search_container">
-            <form action="#" id="company_search_form">
-                <input type="text">
-            </form>
+            <div>
+                <form action="#" id="company_search_form">
+                    <input type="text">
+                </form>
+            </div>
+            <div>
+                <ul>
+
+                </ul>
+            </div>
         </div>
 
     <?php

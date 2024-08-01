@@ -51,8 +51,9 @@ class CustomCompanyAddonCompany
                 AND p.post_status = %s
                 AND p.post_title LIKE %s
                 AND pm.meta_key = %s
+                LIMIT %d
                 ",
-            'company', 'publish', $search_string, '_thumbnail_id'
+            'company', 'publish', $search_string, '_thumbnail_id', 15
         );
 
         // Execute the query
@@ -77,10 +78,10 @@ class CustomCompanyAddonCompany
         <div class="company_search_container">
             <div>
                 <form action="#" id="company_search_form">
-                    <input type="text">
+                    <input placeholder="Search Company" type="text">
                 </form>
             </div>
-            <div>
+            <div style="position: relative">
                 <ul id="company_search_result">
 
                 </ul>

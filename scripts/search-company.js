@@ -3,6 +3,11 @@
  * @type {HTMLUListElement | null}
  */
 const companySearchResult = document.querySelector('#company_search_result');
+
+let isCompanySearchResultHovered = false;
+companySearchResult.addEventListener('mouseover', () => isCompanySearchResultHovered = true);
+companySearchResult.addEventListener('mouseout', () => isCompanySearchResultHovered = false);
+
 /**
  * @type {HTMLInputElement | null}
  */
@@ -10,7 +15,7 @@ const companySearchInput = document.querySelector('#company_search_form input');
 if (companySearchInput !== null) {
     // clear all search result on focus out
     companySearchInput.addEventListener('focusout', () => {
-        if (companySearchResult !== null) {
+        if (companySearchResult !== null && !isCompanySearchResultHovered) {
             companySearchResult.innerHTML = '';
         }
     })

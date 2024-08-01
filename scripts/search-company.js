@@ -48,7 +48,11 @@ function searchCompanyAndAddResult(e) {
 function addResults(companies) {
     if (companySearchResult !== null) {
         // clear previous results
-        companySearchResult.innerHTML = '';
+        companySearchResult.innerHTML = `
+                <li>
+                    <span class="company-search-loading">Loading...</span>
+                </li>
+        `;
         // add new results
         companies.forEach(({thumbnailUrl, title, permalink, exceprt}) => {
             const li = document.createElement('li');

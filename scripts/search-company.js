@@ -21,6 +21,7 @@ if (companySearchInput !== null) {
     })
 
     // search company
+
     companySearchInput.addEventListener('focus', searchCompanyAndAddResult);
     companySearchInput.addEventListener('input', searchCompanyAndAddResult)
 }
@@ -30,6 +31,12 @@ if (companySearchInput !== null) {
  * @param {Event} e
  */
 function searchCompanyAndAddResult(e) {
+    if(companySearchResult !== null){
+        companySearchResult.innerHTML = `
+                <li>
+                    <span class="company-search-loading">Loading...</span>
+                </li>`;
+    }
     (async () => {
         /**
          * @type {function(...[*]): Promise<*>}
@@ -48,15 +55,13 @@ function searchCompanyAndAddResult(e) {
 function addResults(companies) {
     if (companySearchResult !== null) {
         // clear previous results
-        companySearchResult.innerHTML = `
-                <li>
-                    <span class="company-search-loading">Loading...</span>
-                </li>
-        `;
-        // add new results
-        companies.forEach(({thumbnailUrl, title, permalink, exceprt}) => {
-            const li = document.createElement('li');
-            li.innerHTML = `
+        companySearchResult.innerHTML = ``;
+
+        if(companies.length !== 0){
+            // add new results
+            companies.forEach(({thumbnailUrl, title, permalink, exceprt}) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
                         <div>
                             <div>
                                 <a href="${permalink}"><img src="${thumbnailUrl}" alt=""></a>
@@ -67,8 +72,16 @@ function addResults(companies) {
                             </div>
                         </div>
                     `;
-            companySearchResult.append(li);
-        });
+                companySearchResult.append(li);
+            });
+        } else {
+            // Not found
+            companySearchResult.innerHTML = `
+                <li>
+                    <span class="company-search-loading">No Company Found. :(</span>
+                </li>`;
+        }
+
     }
 }
 

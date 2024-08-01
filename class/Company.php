@@ -59,18 +59,16 @@ class CustomCompanyAddonCompany
         $results = $wpdb->get_results($query);
 
         // Process the results to get the thumbnail URLs
-//        foreach ($results as $result) {
-//            // Get the URL of the thumbnail
-//            $thumbnail_url = wp_get_attachment_image_url($result->thumbnail_id, $thumbnail_size);
-//
-//         Get the permalink of the post
-//        $permalink = get_permalink($result->ID);
-//            // Print or use the data as needed
-//            echo 'Title: ' . $result->post_title . '<br>';
-//            echo 'Excerpt: ' . $result->post_excerpt . '<br>';
-//            echo 'Thumbnail URL: ' . $thumbnail_url . '<br><br>';
-//        }
-        return $results;
+        $formatted_results = [];
+        foreach ($results as $result) {
+            $formatted_result = [];
+            $formatted_result['thumbnailUrl'] = wp_get_attachment_image_url($result->thumbnail_id, $thumbnail_size);
+            $formatted_result['title'] = $result->post_title;
+            $formatted_result['exceprt'] =  $result->post_excerpt;
+            $formatted_result['permalink'] = get_permalink($result->ID);
+            $formatted_results[] = $formatted_result;
+        }
+        return $formatted_results;
     }
 
     public function search_form_shortcode(){
@@ -83,7 +81,7 @@ class CustomCompanyAddonCompany
                 </form>
             </div>
             <div>
-                <ul>
+                <ul id="company_search_result">
 
                 </ul>
             </div>

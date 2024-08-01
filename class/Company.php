@@ -164,7 +164,7 @@ class CustomCompanyAddonCompany
 
             // Upload and set the featured image
             $image_url = $post_data['image_url'];
-            $image_id = upload_image_by_url($image_url);
+            $image_id = $this -> upload_image_by_url($image_url);
             if (!is_wp_error($image_id)) {
                 set_post_thumbnail($post_id, $image_id);
             }

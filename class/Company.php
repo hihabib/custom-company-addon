@@ -111,16 +111,38 @@ class CustomCompanyAddonCompany
         $form_id = $record->get_form_settings('id');
         $fields = $record->get('fields');
 
-        file_put_contents(__DIR__ ."/test.log", print_r($fields, true));
-        // Check if this is the form you want to target
         // Get submitted fields data
-        if($form_id === 'e4e3bff'){
-
+        if($form_id === 'e4e3bff'){ // 'e4e3bff' is form ID of elementor in this case
+            $this -> create_new_company([
+                'image_url' => $fields['new_company_thumbnail']['value'],
+                'excerpt' => $fields['shortdescription']['value'],
+                'user_id' => $fields['userid']['value'],
+                'content' => $fields['description']['value'],
+                'title' => $fields['title']['value'],
+                'custom_fields' => [
+                    'country' => $fields['country']['value'],
+                    'city' => $fields['city']['value'],
+                    'zip_code' => $fields['zipcode']['value'],
+                    'email' => $fields['email']['value'],
+                    'contact_number' => $fields['contactnumber']['value'],
+                    'address' => $fields['address']['value'],
+                    'website' => $fields['websitelink']['value'],
+                    'website_name_as_text' => $fields['websitetext']['value'],
+                ]
+            ]);
         }
 
     }
 
+    /**
+     * Create new company post
+     * @param $post_data
+     * @return int|WP_Error
+     */
     public function create_new_company($post_data){
+
+        // TODO: Category adding functionality has to be added
+
         // Create post object
         $post_args = array(
             'post_title'    => wp_strip_all_tags($post_data['title']),

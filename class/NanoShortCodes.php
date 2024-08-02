@@ -196,7 +196,7 @@ class CustomCompanyAddonNanoShortCodes
         add_shortcode("custom_company_comments_template", function () {
             $args = array();
             if (is_singular('company') && get_query_var('rating')) {
-
+                echo "works";
                 $args = array(
                     'post_id' => get_the_ID(),
                     'meta_query' => array(

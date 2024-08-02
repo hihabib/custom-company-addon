@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23375f7b-847c-4e3b-a004-ebe50ecef77a" name="Changes" comment="updated" />
+    <list default="true" id="23375f7b-847c-4e3b-a004-ebe50ecef77a" name="Changes" comment="updated">
+      <change beforePath="$PROJECT_DIR$/class/NanoShortCodes.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/NanoShortCodes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/class/Scripts.php" beforeDir="false" afterPath="$PROJECT_DIR$/class/Scripts.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,23 +78,7 @@
       <updated>1722413300981</updated>
       <workItem from="1722413309288" duration="12060000" />
       <workItem from="1722488669044" duration="2682000" />
-      <workItem from="1722492036174" duration="33560000" />
-    </task>
-    <task id="LOCAL-00026" summary="updated">
-      <option name="closed" value="true" />
-      <created>1722514778734</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1722514778734</updated>
-    </task>
-    <task id="LOCAL-00027" summary="updated">
-      <option name="closed" value="true" />
-      <created>1722514846360</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1722514846360</updated>
+      <workItem from="1722492036174" duration="33898000" />
     </task>
     <task id="LOCAL-00028" summary="updated">
       <option name="closed" value="true" />
@@ -469,7 +456,23 @@
       <option name="project" value="LOCAL" />
       <updated>1722601296470</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="updated">
+      <option name="closed" value="true" />
+      <created>1722601325388</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1722601325388</updated>
+    </task>
+    <task id="LOCAL-00076" summary="updated">
+      <option name="closed" value="true" />
+      <created>1722601414628</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1722601414628</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

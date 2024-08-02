@@ -57,7 +57,7 @@ class CustomCompanyAddonNanoShortCodes
             $percentage_of_three_star = round((count($three_star) * 100) / $total_number_of_ratings, 2);
             $percentage_of_four_star = round((count($four_star) * 100) / $total_number_of_ratings, 2);
             $percentage_of_five_star = round((count($five_star) * 100) / $total_number_of_ratings, 2);
-
+            $current_post_permalink = get_permalink(get_the_ID());
             ?>
             <style>
                 .custom_company_addon_rating_filter_percentage {
@@ -133,24 +133,34 @@ class CustomCompanyAddonNanoShortCodes
                 </div>
                 <div class="custom_company_addon_rating_filter_progressbar">
                     <div>
-                        <progress value="<?php echo count($five_star) ?>"
-                                  max="<?php echo $total_number_of_ratings; ?>"><?php echo count($five_star) ?></progress>
+                        <a href="<?php echo add_query_arg(['rating' => '5'], $current_post_permalink); ?>">
+                            <progress value="<?php echo count($five_star) ?>"
+                                      max="<?php echo $total_number_of_ratings; ?>"><?php echo count($five_star) ?></progress>
+                        </a>
                     </div>
                     <div>
+                        <a href="<?php echo add_query_arg(['rating' => '4'], $current_post_permalink); ?>">
                         <progress value="<?php echo count($four_star) ?>"
                                   max="<?php echo $total_number_of_ratings; ?>"><?php echo count($four_star) ?></progress>
+                        </a>
                     </div>
                     <div>
+                        <a href="<?php echo add_query_arg(['rating' => '3'], $current_post_permalink); ?>">
                         <progress value="<?php echo count($three_star) ?>"
                                   max="<?php echo $total_number_of_ratings; ?>"><?php echo count($three_star) ?></progress>
+                        </a>
                     </div>
                     <div>
+                        <a href="<?php echo add_query_arg(['rating' => '2'], $current_post_permalink); ?>">
                         <progress value="<?php echo count($two_star) ?>"
                                   max="<?php echo $total_number_of_ratings; ?>"><?php echo count($two_star) ?></progress>
+                        </a>
                     </div>
                     <div>
+                        <a href="<?php echo add_query_arg(['rating' => '1'], $current_post_permalink); ?>">
                         <progress value="<?php echo count($one_star) ?>"
                                   max="<?php echo $total_number_of_ratings; ?>"><?php echo count($one_star) ?></progress>
+                        </a>
                     </div>
                 </div>
                 <div class="custom_company_addon_rating_filter_percentage">

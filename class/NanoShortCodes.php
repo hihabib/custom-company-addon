@@ -6,6 +6,7 @@ class CustomCompanyAddonNanoShortCodes
     {
         self::get_verification_badge();
         $this->rating_filter_box();
+        $this -> comments_template();
     }
 
     /**
@@ -60,6 +61,10 @@ class CustomCompanyAddonNanoShortCodes
 
             ?>
             <style>
+                .custom_company_addon_rating_filter_percentage {
+                    align-items: end;
+                }
+
                 .custom_company_addon_rating_filter {
                     display: flex;
                     column-gap: 20px
@@ -176,12 +181,39 @@ class CustomCompanyAddonNanoShortCodes
 
         // Prepare and execute the query to get comment IDs
         $comment_ids = $wpdb->get_col($wpdb->prepare("
-        SELECT comment_ID 
-        FROM $wpdb->comments 
-        WHERE comment_post_ID = %d 
-        AND comment_approved = '1'
-    ", $post_id));
+            SELECT comment_ID 
+            FROM $wpdb->comments 
+            WHERE comment_post_ID = %d 
+            AND comment_approved = '1'
+        ", $post_id));
 
         return $comment_ids;
+    }
+
+    public function comments_template()
+    {
+        add_shortcode("custom_company_comments_template", function () {
+            $args = array();
+            if (is_single() && get_query_var('rating')) {
+                $meta_value = get_query_var('rating');
+
+                // Modify the global comments query
+                add_filter('comments_clauses', function ($clauses) use ($meta_value) {
+                    global $wpdb;
+                    $clauses['where'] .= $wpdb->prepare(" AND $wpdb->commentmeta.meta_key = %s AND $wpdb->commentmeta.meta_value = %s", 'your_meta_key', $meta_value);
+                    $clauses['join'] .= " INNER JOIN $wpdb->commentmeta ON $wpdb->comments.comment_ID = $wpdb->commentmeta.comment_id ";
+                    return $clauses;
+                });
+
+                // Call wp_list_comments
+                wp_list_comments($args);
+
+                // Remove the filter after calling wp_list_comments
+                remove_all_filters('comments_clauses');
+            } else {
+                // Call wp_list_comments without filtering
+                wp_list_comments($args);
+            }
+        });
     }
 }

@@ -4,7 +4,9 @@ class CustomCompanyAddonComment {
     public function  __construct()
     {
         add_filter('query_vars', [$this, 'custom_register_query_vars']);
-        $this -> comments_template();
+        add_action('init', function(){
+            $this -> comments_template();
+        });
     }
     public function custom_register_query_vars($vars) {
         $vars[] = 'rating';

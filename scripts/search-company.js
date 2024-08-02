@@ -5,8 +5,10 @@
 const companySearchResult = document.querySelector('#company_search_result');
 
 let isCompanySearchResultHovered = false;
-companySearchResult.addEventListener('mouseover', () => isCompanySearchResultHovered = true);
-companySearchResult.addEventListener('mouseout', () => isCompanySearchResultHovered = false);
+if(companySearchResult !== null){
+    companySearchResult.addEventListener('mouseover', () => isCompanySearchResultHovered = true);
+    companySearchResult.addEventListener('mouseout', () => isCompanySearchResultHovered = false);
+}
 
 /**
  * @type {HTMLInputElement | null}

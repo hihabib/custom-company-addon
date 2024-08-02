@@ -27,7 +27,7 @@ class CustomCompanyAddonComment
                     [
                         'key' => 'rating',
                         'value' => ['1', '3'],
-                        'compare' => '='
+                        'compare' => 'IN'
                     ]
                 ];
 

@@ -36,7 +36,9 @@ class CustomCompanyAddonNanoShortCodes
     {
         add_shortcode("get_comment_filters", function(){
             $comment_ids = $this -> get_comment_ids_by_post_id(get_the_ID());
+            echo "<pre>";
             print_r($comment_ids);
+            echo "</pre>";
         });
     }
 

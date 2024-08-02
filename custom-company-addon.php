@@ -26,12 +26,12 @@ function custom_company_addon()
     require_once __DIR__ . "/class/Scripts.php";
     new CustomCompanyAddonScript();
 
-
-
-
     if (is_singular('company') || is_post_type_archive('company')) :
         require_once __DIR__ . "/class/NanoShortCodes.php";
         new CustomCompanyAddonNanoShortCodes();
 
     endif;
 }
+
+require_once __DIR__ . "/class/Comments.php";
+new CustomCompanyAddonComment();

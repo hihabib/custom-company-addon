@@ -52,11 +52,11 @@ class CustomCompanyAddonNanoShortCodes
             $total_number_of_ratings = count($one_star) + count($two_star) + count($three_star) + count($four_star) + count($five_star);
 
             // percentages of stars
-            $percentage_of_one_star = (count($one_star) * 100) / $total_number_of_ratings;
-            $percentage_of_two_star = (count($two_star) * 100) / $total_number_of_ratings;
-            $percentage_of_three_star = (count($three_star) * 100) / $total_number_of_ratings;
-            $percentage_of_four_star = (count($four_star) * 100) / $total_number_of_ratings;
-            $percentage_of_five_star = (count($five_star) * 100) / $total_number_of_ratings;
+            $percentage_of_one_star = round((count($one_star) * 100) / $total_number_of_ratings, 2);
+            $percentage_of_two_star = round((count($two_star) * 100) / $total_number_of_ratings, 2);
+            $percentage_of_three_star = round((count($three_star) * 100) / $total_number_of_ratings, 2);
+            $percentage_of_four_star = round((count($four_star) * 100) / $total_number_of_ratings, 2);
+            $percentage_of_five_star = round((count($five_star) * 100) / $total_number_of_ratings, 2);
 
             ?>
 

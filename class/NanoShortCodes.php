@@ -37,10 +37,22 @@ class CustomCompanyAddonNanoShortCodes
         add_shortcode("get_comment_filters", function(){
             $comment_ids = $this -> get_comment_ids_by_post_id(get_the_ID());
             echo "<pre>";
-            array_walk($comment_ids, function($comment_ID){
+            $all_ratings = [];
+            array_walk($comment_ids, function($comment_ID)use($all_ratings){
                 $custom_meta_value = get_comment_meta( $comment_ID, 'rating', true );
-                print_r($custom_meta_value);
+                array_push($all_ratings, $custom_meta_value);
             });
+            $one_star = array_filter($all_ratings, fn($rating) => intval($rating) === 1);
+            $two_star = array_filter($all_ratings, fn($rating) => intval($rating) === 2);
+            $three_star = array_filter($all_ratings, fn($rating) => intval($rating) === 3);
+            $four_star = array_filter($all_ratings, fn($rating) => intval($rating) === 4);
+            $five_star = array_filter($all_ratings, fn($rating) => intval($rating) === 4);
+
+            print_r($one_star);
+            print_r($two_star);
+            print_r($three_star);
+            print_r($four_star);
+            print_r($five_star);
             echo "</pre>";
         });
     }

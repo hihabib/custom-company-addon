@@ -26,7 +26,7 @@ class CustomCompanyAddonComment
                 $args['meta_query'] = [
                     [
                         'key' => 'rating',
-                        'value' => get_query_var('rating'),
+                        'value' => implode(",",get_query_var('rating')),
                         'compare' => '='
                     ]
                 ];

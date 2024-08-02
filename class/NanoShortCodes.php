@@ -204,7 +204,7 @@ class CustomCompanyAddonNanoShortCodes
                     $clauses['join'] .= " INNER JOIN $wpdb->commentmeta ON $wpdb->comments.comment_ID = $wpdb->commentmeta.comment_id ";
                     return $clauses;
                 });
-
+                echo "works";
                 // Call wp_list_comments
                 wp_list_comments($args);
 

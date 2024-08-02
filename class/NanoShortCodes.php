@@ -60,6 +60,10 @@ class CustomCompanyAddonNanoShortCodes
             $current_post_permalink = get_permalink(get_the_ID());
             ?>
             <style>
+                .custom_company_addon_rating_filter_progressbar a {
+                    display: block;
+                    width: 100%;
+                }
                 .custom_company_addon_rating_filter_percentage {
                     align-items: end;
                 }

@@ -6,8 +6,6 @@ class CustomCompanyAddonNanoShortCodes
     {
         self::get_verification_badge();
         $this->rating_filter_box();
-        $this -> comments_template();
-        add_filter('query_vars', [$this, 'custom_register_query_vars']);
     }
 
     /**
@@ -191,35 +189,6 @@ class CustomCompanyAddonNanoShortCodes
         return $comment_ids;
     }
 
-    public function comments_template()
-    {
-        add_shortcode("custom_company_comments_template", function () {
-            $args = array();
-            if (is_singular('company') && get_query_var('rating')) {
-                echo "works";
-                $args = array(
-                    'post_id' => get_the_ID(),
-                    'meta_query' => array(
-                        array(
-                            'key' => 'rating',
-                            'value' => get_query_var('rating'),
-                            'compare' => '='
-                        )
-                    )
-                );
-                $comment_query = new WP_Comment_Query($args);
-                $comments = $comment_query -> comments;
-                wp_list_comments([], $comments);
 
-            } else {
-                // Call wp_list_comments without filtering
-                wp_list_comments($args);
-            }
-        });
-    }
 
-    public function custom_register_query_vars($vars) {
-        $vars[] = 'rating';
-        return $vars;
-    }
 }

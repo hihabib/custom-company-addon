@@ -34,7 +34,7 @@ class CustomCompanyAddonComment
             }
             $comment_query = new WP_Comment_Query($args);
             $comments = $comment_query->comments;
-            echo "<ul>";
+            echo "<ul class='company-reviews'>";
             wp_list_comments([
                 'style' => 'ul'
             ], $comments);

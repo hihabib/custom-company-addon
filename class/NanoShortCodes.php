@@ -38,10 +38,10 @@ class CustomCompanyAddonNanoShortCodes
             $comment_ids = $this -> get_comment_ids_by_post_id(get_the_ID());
             echo "<pre>";
             $all_ratings = [];
-            array_walk($comment_ids, function($comment_ID)use($all_ratings){
+            foreach ($comment_ids as $comment_ID){
                 $custom_meta_value = get_comment_meta( $comment_ID, 'rating', true );
-                array_push($all_ratings, $custom_meta_value);
-            });
+                $all_ratings[] = $custom_meta_value;
+            }
             $one_star = array_filter($all_ratings, fn($rating) => intval($rating) === 1);
             $two_star = array_filter($all_ratings, fn($rating) => intval($rating) === 2);
             $three_star = array_filter($all_ratings, fn($rating) => intval($rating) === 3);

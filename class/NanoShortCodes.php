@@ -5,7 +5,7 @@ class CustomCompanyAddonNanoShortCodes
     public function __construct()
     {
         self::get_verification_badge();
-        $this -> rating_filter_box();
+        $this->rating_filter_box();
     }
 
     /**
@@ -13,8 +13,9 @@ class CustomCompanyAddonNanoShortCodes
      * shortcode: [get_verification_badge]
      * @return void
      */
-    public static function get_verification_badge(){
-        add_shortcode("get_verification_badge", function(){
+    public static function get_verification_badge()
+    {
+        add_shortcode("get_verification_badge", function () {
             $is_verified = get_field('verified');
 
             echo $is_verified ? "<div class='custom-company-addon-verification-badge'>
@@ -34,11 +35,11 @@ class CustomCompanyAddonNanoShortCodes
      */
     public function rating_filter_box()
     {
-        add_shortcode("get_comment_filters", function(){
-            $comment_ids = $this -> get_comment_ids_by_post_id(get_the_ID());
+        add_shortcode("get_comment_filters", function () {
+            $comment_ids = $this->get_comment_ids_by_post_id(get_the_ID());
             $all_ratings = [];
-            foreach ($comment_ids as $comment_ID){
-                $custom_meta_value = get_comment_meta( $comment_ID, 'rating', true );
+            foreach ($comment_ids as $comment_ID) {
+                $custom_meta_value = get_comment_meta($comment_ID, 'rating', true);
                 $all_ratings[] = $custom_meta_value;
             }
 
@@ -49,23 +50,76 @@ class CustomCompanyAddonNanoShortCodes
             $four_star = array_filter($all_ratings, fn($rating) => intval($rating) === 4);
             $five_star = array_filter($all_ratings, fn($rating) => intval($rating) === 5);
             $total_number_of_ratings = count($one_star) + count($two_star) + count($three_star) + count($four_star) + count($five_star);
+
+            // percentages of stars
+            $percentage_of_one_star = (count($one_star) * 100) / $total_number_of_ratings;
+            $percentage_of_two_star = (count($two_star) * 100) / $total_number_of_ratings;
+            $percentage_of_three_star = (count($three_star) * 100) / $total_number_of_ratings;
+            $percentage_of_four_star = (count($four_star) * 100) / $total_number_of_ratings;
+            $percentage_of_five_star = (count($five_star) * 100) / $total_number_of_ratings;
+
             ?>
 
             <div class="custom_company_addon_rating_filter_progressbar">
                 <div>
-                    <progress value="<?php echo count($one_star) ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo count($one_star) ?></progress>
+                    <div>
+                        <span>1-Star</span>
+                    </div>
+                    <div>
+                        <progress value="<?php echo count($one_star) ?>"
+                                  max="<?php echo $total_number_of_ratings; ?>"><?php echo count($one_star) ?></progress>
+                    </div>
+                    <div>
+                        <span><?php echo $percentage_of_one_star; ?>%</span>
+                    </div>
                 </div>
                 <div>
-                    <progress value="<?php echo count($two_star) ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo count($two_star) ?></progress>
+                    <div>
+                        <span>2-Star</span>
+                    </div>
+                    <div>
+                        <progress value="<?php echo count($two_star) ?>"
+                                  max="<?php echo $total_number_of_ratings; ?>"><?php echo count($two_star) ?></progress>
+                    </div>
+                    <div>
+                        <span><?php echo $percentage_of_two_star; ?>%</span>
+                    </div>
                 </div>
                 <div>
-                    <progress value="<?php echo count($three_star) ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo count($three_star) ?></progress>
+                    <div>
+                        <span>3-Star</span>
+                    </div>
+                    <div>
+                        <progress value="<?php echo count($three_star) ?>"
+                                  max="<?php echo $total_number_of_ratings; ?>"><?php echo count($three_star) ?></progress>
+                    </div>
+                    <div>
+                        <span><?php echo $percentage_of_three_star; ?>%</span>
+                    </div>
                 </div>
                 <div>
-                    <progress value="<?php echo count($four_star) ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo count($four_star) ?></progress>
+                    <div>
+                        <span>4-Star</span>
+                    </div>
+                    <div>
+                        <progress value="<?php echo count($four_star) ?>"
+                                  max="<?php echo $total_number_of_ratings; ?>"><?php echo count($four_star) ?></progress>
+                    </div>
+                    <div>
+                        <span><?php echo $percentage_of_four_star; ?>%</span>
+                    </div>
                 </div>
                 <div>
-                    <progress value="<?php echo count($five_star) ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo count($five_star) ?></progress>
+                    <div>
+                        <span>5-Star</span>
+                    </div>
+                    <div>
+                        <progress value="<?php echo count($five_star) ?>"
+                                  max="<?php echo $total_number_of_ratings; ?>"><?php echo count($five_star) ?></progress>
+                    </div>
+                    <div>
+                        <span><?php echo $percentage_of_five_star; ?>%</span>
+                    </div>
                 </div>
             </div>
 
@@ -78,12 +132,13 @@ class CustomCompanyAddonNanoShortCodes
      * @param $post_id
      * @return array
      */
-    private function get_comment_ids_by_post_id($post_id) {
+    private function get_comment_ids_by_post_id($post_id)
+    {
         // Fetch comments for the given post ID
         $comments = get_comments(array(
             'post_id' => $post_id,
-            'status'  => 'approve', // You can change this to 'all' if you want to fetch all comments regardless of their status
-            'type'    => 'comment', // You can change this to 'pings' if you want to fetch pingbacks and trackbacks
+            'status' => 'approve', // You can change this to 'all' if you want to fetch all comments regardless of their status
+            'type' => 'comment', // You can change this to 'pings' if you want to fetch pingbacks and trackbacks
         ));
 
         // Extract comment IDs

@@ -36,25 +36,40 @@ class CustomCompanyAddonNanoShortCodes
     {
         add_shortcode("get_comment_filters", function(){
             $comment_ids = $this -> get_comment_ids_by_post_id(get_the_ID());
-            echo "<pre>";
             $all_ratings = [];
             foreach ($comment_ids as $comment_ID){
                 $custom_meta_value = get_comment_meta( $comment_ID, 'rating', true );
                 $all_ratings[] = $custom_meta_value;
             }
+
+            // categorized ratings
             $one_star = array_filter($all_ratings, fn($rating) => intval($rating) === 1);
             $two_star = array_filter($all_ratings, fn($rating) => intval($rating) === 2);
             $three_star = array_filter($all_ratings, fn($rating) => intval($rating) === 3);
             $four_star = array_filter($all_ratings, fn($rating) => intval($rating) === 4);
             $five_star = array_filter($all_ratings, fn($rating) => intval($rating) === 5);
+            $total_number_of_ratings = count($one_star) + count($two_star) + count($three_star) + count($four_star) + count($five_star);
+            ?>
 
-            print_r($all_ratings);
-            print_r($one_star);
-            print_r($two_star);
-            print_r($three_star);
-            print_r($four_star);
-            print_r($five_star);
-            echo "</pre>";
+            <div class="custom_company_addon_rating_filter_progressbar">
+                <div>
+                    <progress value="<?php echo $one_star ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo $one_star ?></progress>
+                </div>
+                <div>
+                    <progress value="<?php echo $two_star ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo $two_star ?></progress>
+                </div>
+                <div>
+                    <progress value="<?php echo $three_star ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo $three_star ?></progress>
+                </div>
+                <div>
+                    <progress value="<?php echo $four_star ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo $four_star ?></progress>
+                </div>
+                <div>
+                    <progress value="<?php echo $five_star ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo $five_star ?></progress>
+                </div>
+            </div>
+
+            <?php
         });
     }
 

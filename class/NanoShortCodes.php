@@ -60,64 +60,64 @@ class CustomCompanyAddonNanoShortCodes
 
             ?>
 
-            <div class="custom_company_addon_rating_filter_progressbar">
-                <div>
-                    <div>
+            <div class="custom_company_addon_rating_filter">
+                <div class="custom_company_addon_rating_filter_content">
+                    <div class="custom_company_addon_rating_filter_star_text">
                         <span>1-Star</span>
                     </div>
-                    <div>
+                    <div class="custom_company_addon_rating_filter_progressbar">
                         <progress value="<?php echo count($one_star) ?>"
                                   max="<?php echo $total_number_of_ratings; ?>"><?php echo count($one_star) ?></progress>
                     </div>
-                    <div>
+                    <div class="custom_company_addon_rating_filter_percentage">
                         <span><?php echo $percentage_of_one_star; ?>%</span>
                     </div>
                 </div>
-                <div>
-                    <div>
+                <div class="custom_company_addon_rating_filter_content">
+                    <div class="custom_company_addon_rating_filter_star_text">
                         <span>2-Star</span>
                     </div>
-                    <div>
+                    <div class="custom_company_addon_rating_filter_progressbar">
                         <progress value="<?php echo count($two_star) ?>"
                                   max="<?php echo $total_number_of_ratings; ?>"><?php echo count($two_star) ?></progress>
                     </div>
-                    <div>
+                    <div class="custom_company_addon_rating_filter_percentage">
                         <span><?php echo $percentage_of_two_star; ?>%</span>
                     </div>
                 </div>
-                <div>
-                    <div>
+                <div class="custom_company_addon_rating_filter_content">
+                    <div class="custom_company_addon_rating_filter_star_text">
                         <span>3-Star</span>
                     </div>
-                    <div>
+                    <div class="custom_company_addon_rating_filter_progressbar">
                         <progress value="<?php echo count($three_star) ?>"
                                   max="<?php echo $total_number_of_ratings; ?>"><?php echo count($three_star) ?></progress>
                     </div>
-                    <div>
+                    <div class="custom_company_addon_rating_filter_percentage">
                         <span><?php echo $percentage_of_three_star; ?>%</span>
                     </div>
                 </div>
-                <div>
-                    <div>
+                <div class="custom_company_addon_rating_filter_content">
+                    <div class="custom_company_addon_rating_filter_star_text">
                         <span>4-Star</span>
                     </div>
-                    <div>
+                    <div class="custom_company_addon_rating_filter_progressbar">
                         <progress value="<?php echo count($four_star) ?>"
                                   max="<?php echo $total_number_of_ratings; ?>"><?php echo count($four_star) ?></progress>
                     </div>
-                    <div>
+                    <div class="custom_company_addon_rating_filter_percentage">
                         <span><?php echo $percentage_of_four_star; ?>%</span>
                     </div>
                 </div>
-                <div>
-                    <div>
+                <div class="custom_company_addon_rating_filter_content">
+                    <div class="custom_company_addon_rating_filter_star_text">
                         <span>5-Star</span>
                     </div>
-                    <div>
+                    <div class="custom_company_addon_rating_filter_progressbar">
                         <progress value="<?php echo count($five_star) ?>"
                                   max="<?php echo $total_number_of_ratings; ?>"><?php echo count($five_star) ?></progress>
                     </div>
-                    <div>
+                    <div class="custom_company_addon_rating_filter_percentage">
                         <span><?php echo $percentage_of_five_star; ?>%</span>
                     </div>
                 </div>

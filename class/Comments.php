@@ -19,7 +19,8 @@ class CustomCompanyAddonComment
 
     public function add_new_comment(){
         add_shortcode('add_new_comment', function(){
-            comment_form();
+            $post = get_post(get_the_ID());
+            comment_form([], $post);
         });
     }
 

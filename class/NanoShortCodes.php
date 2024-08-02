@@ -53,19 +53,19 @@ class CustomCompanyAddonNanoShortCodes
 
             <div class="custom_company_addon_rating_filter_progressbar">
                 <div>
-                    <progress value="<?php echo $one_star ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo $one_star ?></progress>
+                    <progress value="<?php echo count($one_star) ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo count($one_star) ?></progress>
                 </div>
                 <div>
-                    <progress value="<?php echo $two_star ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo $two_star ?></progress>
+                    <progress value="<?php echo count($two_star) ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo count($two_star) ?></progress>
                 </div>
                 <div>
-                    <progress value="<?php echo $three_star ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo $three_star ?></progress>
+                    <progress value="<?php echo count($three_star) ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo count($three_star) ?></progress>
                 </div>
                 <div>
-                    <progress value="<?php echo $four_star ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo $four_star ?></progress>
+                    <progress value="<?php echo count($four_star) ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo count($four_star) ?></progress>
                 </div>
                 <div>
-                    <progress value="<?php echo $five_star ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo $five_star ?></progress>
+                    <progress value="<?php echo count($five_star) ?>" max="<?php echo $total_number_of_ratings; ?>"><?php echo count($five_star) ?></progress>
                 </div>
             </div>
 

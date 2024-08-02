@@ -19,18 +19,17 @@ class CustomCompanyAddonComment
     public function comments_template()
     {
         add_shortcode("custom_company_comments_template", function () {
-            $args = [];
+            $args = [
+                'post_id' => get_the_ID(),
+            ];
             if (is_singular('company') && get_query_var('rating')) {
-                $args = array(
-                    'post_id' => get_the_ID(),
-                    'meta_query' => array(
-                        array(
-                            'key' => 'rating',
-                            'value' => get_query_var('rating'),
-                            'compare' => '='
-                        )
-                    )
-                );
+                $args['meta_query'] = [
+                    [
+                        'key' => 'rating',
+                        'value' => get_query_var('rating'),
+                        'compare' => '='
+                    ]
+                ];
 
             }
             $comment_query = new WP_Comment_Query($args);

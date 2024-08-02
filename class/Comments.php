@@ -34,9 +34,11 @@ class CustomCompanyAddonComment
             }
             $comment_query = new WP_Comment_Query($args);
             $comments = $comment_query->comments;
+            echo "<ul>";
             wp_list_comments([
                 'style' => 'ul'
             ], $comments);
+            echo "<ul>";
         });
     }
 

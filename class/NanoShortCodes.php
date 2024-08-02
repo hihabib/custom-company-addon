@@ -46,7 +46,7 @@ class CustomCompanyAddonNanoShortCodes
             $two_star = array_filter($all_ratings, fn($rating) => intval($rating) === 2);
             $three_star = array_filter($all_ratings, fn($rating) => intval($rating) === 3);
             $four_star = array_filter($all_ratings, fn($rating) => intval($rating) === 4);
-            $five_star = array_filter($all_ratings, fn($rating) => intval($rating) === 4);
+            $five_star = array_filter($all_ratings, fn($rating) => intval($rating) === 5);
 
             print_r($all_ratings);
             print_r($one_star);

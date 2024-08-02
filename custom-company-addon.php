@@ -32,3 +32,6 @@ function custom_company_addon()
 
     endif;
 }
+
+require_once __DIR__ . "/class/Comments.php";
+new CustomCompanyAddonComment();

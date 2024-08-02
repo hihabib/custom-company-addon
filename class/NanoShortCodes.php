@@ -7,6 +7,7 @@ class CustomCompanyAddonNanoShortCodes
         self::get_verification_badge();
         $this->rating_filter_box();
         $this -> comments_template();
+        add_filter('query_vars', [$this, 'custom_register_query_vars']);
     }
 
     /**
@@ -195,25 +196,30 @@ class CustomCompanyAddonNanoShortCodes
         add_shortcode("custom_company_comments_template", function () {
             $args = array();
             if (is_singular('company') && get_query_var('rating')) {
-                $meta_value = get_query_var('rating');
 
-                // Modify the global comments query
-                add_filter('comments_clauses', function ($clauses) use ($meta_value) {
-                    global $wpdb;
-                    $clauses['where'] .= $wpdb->prepare(" AND $wpdb->commentmeta.meta_key = %s AND $wpdb->commentmeta.meta_value = %s", 'your_meta_key', $meta_value);
-                    $clauses['join'] .= " INNER JOIN $wpdb->commentmeta ON $wpdb->comments.comment_ID = $wpdb->commentmeta.comment_id ";
-                    return $clauses;
-                });
-                echo "works";
-                // Call wp_list_comments
-                wp_list_comments($args);
+                $args = array(
+                    'post_id' => get_the_ID(),
+                    'meta_query' => array(
+                        array(
+                            'key' => 'rating',
+                            'value' => get_query_var('rating'),
+                            'compare' => '='
+                        )
+                    )
+                );
+                $comment_query = new WP_Comment_Query($args);
+                $comments = $comment_query -> comments;
+                wp_list_comments([], $comments);
 
-                // Remove the filter after calling wp_list_comments
-                remove_all_filters('comments_clauses');
             } else {
                 // Call wp_list_comments without filtering
                 wp_list_comments($args);
             }
         });
+    }
+
+    public function custom_register_query_vars($vars) {
+        $vars[] = 'rating';
+        return $vars;
     }
 }

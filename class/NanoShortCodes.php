@@ -59,6 +59,40 @@ class CustomCompanyAddonNanoShortCodes
             $percentage_of_five_star = round((count($five_star) * 100) / $total_number_of_ratings, 2);
 
             ?>
+            <style>
+                .custom_company_addon_rating_filter {
+                    display: flex;
+                    column-gap: 20px
+                }
+                .custom_company_addon_rating_filter_star_text,
+                .custom_company_addon_rating_filter_progressbar,
+                .custom_company_addon_rating_filter_percentage {
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                }
+                .custom_company_addon_rating_filter_star_text > *,
+                .custom_company_addon_rating_filter_progressbar > *,
+                .custom_company_addon_rating_filter_percentage > * {
+                    padding: 0;
+                    height: 30px;
+                    display: block;
+                }
+                .custom_company_addon_rating_filter_percentage > * {
+                    padding-top: 2px
+                }
+                .custom_company_addon_rating_filter_progressbar {
+                    flex-grow: 1;
+                }
+                .custom_company_addon_rating_filter_progressbar progress {
+                    width: 100%;
+                }
+                .custom_company_addon_rating_filter_progressbar > * {
+                    display: flex;
+                    align-items: center;
+                    width: 100%
+                }
+            </style>
             <div class="custom_company_addon_rating_filter">
                 <div class="custom_company_addon_rating_filter_star_text">
                     <span>5-Star</span>

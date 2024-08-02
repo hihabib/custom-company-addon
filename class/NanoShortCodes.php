@@ -64,6 +64,7 @@ class CustomCompanyAddonNanoShortCodes
                     display: flex;
                     column-gap: 20px
                 }
+
                 .custom_company_addon_rating_filter_star_text,
                 .custom_company_addon_rating_filter_progressbar,
                 .custom_company_addon_rating_filter_percentage {
@@ -71,6 +72,7 @@ class CustomCompanyAddonNanoShortCodes
                     justify-content: center;
                     flex-direction: column;
                 }
+
                 .custom_company_addon_rating_filter_star_text > *,
                 .custom_company_addon_rating_filter_progressbar > *,
                 .custom_company_addon_rating_filter_percentage > * {
@@ -78,32 +80,40 @@ class CustomCompanyAddonNanoShortCodes
                     height: 30px;
                     display: block;
                 }
+
                 .custom_company_addon_rating_filter_percentage > * {
                     padding-top: 2px
                 }
+
                 .custom_company_addon_rating_filter_progressbar {
                     flex-grow: 1;
                 }
+
                 .custom_company_addon_rating_filter_progressbar progress {
                     width: 100%;
                 }
+
                 .custom_company_addon_rating_filter_progressbar > * {
                     display: flex;
                     align-items: center;
                     width: 100%
                 }
+
                 .custom_company_addon_rating_filter_progressbar progress {
                     border-radius: 15px;
                     height: 12px
                 }
+
                 .custom_company_addon_rating_filter_progressbar progress::-webkit-progress-bar {
                     background-color: rgb(241, 241, 232);
                     border-radius: 15px;
                 }
+
                 .custom_company_addon_rating_filter_progressbar progress::-webkit-progress-value {
                     background-color: rgb(28, 28, 28);
                     border-radius: 15px;
                 }
+
                 .custom_company_addon_rating_filter_progressbar progress::-moz-progress-bar {
                     background-color: rgb(241, 241, 232);
                     border-radius: 15px;
@@ -159,15 +169,18 @@ class CustomCompanyAddonNanoShortCodes
      */
     private function get_comment_ids_by_post_id($post_id)
     {
-        // Fetch comments for the given post ID
-        $comments = get_comments(array(
-            'post_id' => $post_id,
-            'status' => 'approve', // You can change this to 'all' if you want to fetch all comments regardless of their status
-            'type' => 'comment', // You can change this to 'pings' if you want to fetch pingbacks and trackbacks
-        ));
+        global $wpdb;
 
-        // Extract comment IDs
-        $comment_ids = wp_list_pluck($comments, 'comment_ID');
+        // Ensure the post ID is an integer
+        $post_id = intval($post_id);
+
+        // Prepare and execute the query to get comment IDs
+        $comment_ids = $wpdb->get_col($wpdb->prepare("
+        SELECT comment_ID 
+        FROM $wpdb->comments 
+        WHERE comment_post_ID = %d 
+        AND comment_approved = '1'
+    ", $post_id));
 
         return $comment_ids;
     }

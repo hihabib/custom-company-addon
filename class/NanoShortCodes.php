@@ -59,67 +59,32 @@ class CustomCompanyAddonNanoShortCodes
             $percentage_of_five_star = round((count($five_star) * 100) / $total_number_of_ratings, 2);
 
             ?>
-
             <div class="custom_company_addon_rating_filter">
-                <div class="custom_company_addon_rating_filter_content">
-                    <div class="custom_company_addon_rating_filter_star_text">
-                        <span>1-Star</span>
-                    </div>
-                    <div class="custom_company_addon_rating_filter_progressbar">
-                        <progress value="<?php echo count($one_star) ?>"
-                                  max="<?php echo $total_number_of_ratings; ?>"><?php echo count($one_star) ?></progress>
-                    </div>
-                    <div class="custom_company_addon_rating_filter_percentage">
-                        <span><?php echo $percentage_of_one_star; ?>%</span>
-                    </div>
+                <div class="custom_company_addon_rating_filter_star_text">
+                    <span>5-Star</span>
+                    <span>4-Star</span>
+                    <span>3-Star</span>
+                    <span>2-Star</span>
+                    <span>1-Star</span>
                 </div>
-                <div class="custom_company_addon_rating_filter_content">
-                    <div class="custom_company_addon_rating_filter_star_text">
-                        <span>2-Star</span>
-                    </div>
-                    <div class="custom_company_addon_rating_filter_progressbar">
-                        <progress value="<?php echo count($two_star) ?>"
-                                  max="<?php echo $total_number_of_ratings; ?>"><?php echo count($two_star) ?></progress>
-                    </div>
-                    <div class="custom_company_addon_rating_filter_percentage">
-                        <span><?php echo $percentage_of_two_star; ?>%</span>
-                    </div>
+                <div class="custom_company_addon_rating_filter_progressbar">
+                    <progress value="<?php echo count($five_star) ?>"
+                              max="<?php echo $total_number_of_ratings; ?>"><?php echo count($five_star) ?></progress>
+                    <progress value="<?php echo count($four_star) ?>"
+                              max="<?php echo $total_number_of_ratings; ?>"><?php echo count($four_star) ?></progress>
+                    <progress value="<?php echo count($three_star) ?>"
+                              max="<?php echo $total_number_of_ratings; ?>"><?php echo count($three_star) ?></progress>
+                    <progress value="<?php echo count($two_star) ?>"
+                              max="<?php echo $total_number_of_ratings; ?>"><?php echo count($two_star) ?></progress>
+                    <progress value="<?php echo count($one_star) ?>"
+                              max="<?php echo $total_number_of_ratings; ?>"><?php echo count($one_star) ?></progress>
                 </div>
-                <div class="custom_company_addon_rating_filter_content">
-                    <div class="custom_company_addon_rating_filter_star_text">
-                        <span>3-Star</span>
-                    </div>
-                    <div class="custom_company_addon_rating_filter_progressbar">
-                        <progress value="<?php echo count($three_star) ?>"
-                                  max="<?php echo $total_number_of_ratings; ?>"><?php echo count($three_star) ?></progress>
-                    </div>
-                    <div class="custom_company_addon_rating_filter_percentage">
-                        <span><?php echo $percentage_of_three_star; ?>%</span>
-                    </div>
-                </div>
-                <div class="custom_company_addon_rating_filter_content">
-                    <div class="custom_company_addon_rating_filter_star_text">
-                        <span>4-Star</span>
-                    </div>
-                    <div class="custom_company_addon_rating_filter_progressbar">
-                        <progress value="<?php echo count($four_star) ?>"
-                                  max="<?php echo $total_number_of_ratings; ?>"><?php echo count($four_star) ?></progress>
-                    </div>
-                    <div class="custom_company_addon_rating_filter_percentage">
-                        <span><?php echo $percentage_of_four_star; ?>%</span>
-                    </div>
-                </div>
-                <div class="custom_company_addon_rating_filter_content">
-                    <div class="custom_company_addon_rating_filter_star_text">
-                        <span>5-Star</span>
-                    </div>
-                    <div class="custom_company_addon_rating_filter_progressbar">
-                        <progress value="<?php echo count($five_star) ?>"
-                                  max="<?php echo $total_number_of_ratings; ?>"><?php echo count($five_star) ?></progress>
-                    </div>
-                    <div class="custom_company_addon_rating_filter_percentage">
-                        <span><?php echo $percentage_of_five_star; ?>%</span>
-                    </div>
+                <div class="custom_company_addon_rating_filter_percentage">
+                    <span><?php echo $percentage_of_five_star; ?>%</span>
+                    <span><?php echo $percentage_of_four_star; ?>%</span>
+                    <span><?php echo $percentage_of_three_star; ?>%</span>
+                    <span><?php echo $percentage_of_two_star; ?>%</span>
+                    <span><?php echo $percentage_of_one_star; ?>%</span>
                 </div>
             </div>
 

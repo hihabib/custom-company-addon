@@ -34,6 +34,7 @@ class CustomCompanyAddonComment {
                 wp_list_comments([], $comments);
 
             } else {
+                echo "works";
                 // Call wp_list_comments without filtering
                 wp_list_comments($args);
             }

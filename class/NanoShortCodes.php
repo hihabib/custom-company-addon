@@ -194,7 +194,7 @@ class CustomCompanyAddonNanoShortCodes
     {
         add_shortcode("custom_company_comments_template", function () {
             $args = array();
-            if (is_single() && get_query_var('rating')) {
+            if (is_singular('post') && get_query_var('rating')) {
                 $meta_value = get_query_var('rating');
 
                 // Modify the global comments query

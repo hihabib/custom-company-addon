@@ -6,7 +6,8 @@ class CustomCompanyAddonComment
     {
         add_filter('query_vars', [$this, 'custom_register_query_vars']);
         add_action('init', function () {
-            $this->comments_template();
+            $this -> comments_template();
+            $this -> add_new_comment();
         });
     }
 
@@ -14,6 +15,12 @@ class CustomCompanyAddonComment
     {
         $vars[] = 'rating';
         return $vars;
+    }
+
+    public function add_new_comment(){
+        add_shortcode('add_new_comment', function(){
+            comment_form();
+        });
     }
 
     public function comments_template()

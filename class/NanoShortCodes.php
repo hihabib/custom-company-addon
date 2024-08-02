@@ -92,6 +92,22 @@ class CustomCompanyAddonNanoShortCodes
                     align-items: center;
                     width: 100%
                 }
+                .custom_company_addon_rating_filter_progressbar progress {
+                    border-radius: 15px;
+                    height: 12px
+                }
+                .custom_company_addon_rating_filter_progressbar progress::-webkit-progress-bar {
+                    background-color: rgb(241, 241, 232);
+                    border-radius: 15px;
+                }
+                .custom_company_addon_rating_filter_progressbar progress::-webkit-progress-value {
+                    background-color: rgb(28, 28, 28);
+                    border-radius: 15px;
+                }
+                .custom_company_addon_rating_filter_progressbar progress::-moz-progress-bar {
+                    background-color: rgb(241, 241, 232);
+                    border-radius: 15px;
+                }
             </style>
             <div class="custom_company_addon_rating_filter">
                 <div class="custom_company_addon_rating_filter_star_text">

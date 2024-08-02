@@ -5,6 +5,7 @@ class CustomCompanyAddonNanoShortCodes
     public function __construct()
     {
         self::get_verification_badge();
+        $this -> rating_filter_box();
     }
 
     /**
@@ -24,5 +25,37 @@ class CustomCompanyAddonNanoShortCodes
                     <div></div>
                  </div>" : "";
         });
+    }
+
+    /**
+     * Comment Filter Box
+     * shortcode: [get_comment_filters]
+     * @return void
+     */
+    public function rating_filter_box()
+    {
+        add_shortcode("get_comment_filters", function(){
+            $comment_ids = $this -> get_comment_ids_by_post_id(get_the_ID());
+            print_r($comment_ids);
+        });
+    }
+
+    /**
+     * Get All Comment Ids
+     * @param $post_id
+     * @return array
+     */
+    private function get_comment_ids_by_post_id($post_id) {
+        // Fetch comments for the given post ID
+        $comments = get_comments(array(
+            'post_id' => $post_id,
+            'status'  => 'approve', // You can change this to 'all' if you want to fetch all comments regardless of their status
+            'type'    => 'comment', // You can change this to 'pings' if you want to fetch pingbacks and trackbacks
+        ));
+
+        // Extract comment IDs
+        $comment_ids = wp_list_pluck($comments, 'comment_ID');
+
+        return $comment_ids;
     }
 }

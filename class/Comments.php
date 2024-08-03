@@ -24,7 +24,16 @@ class CustomCompanyAddonComment
                 'title_reply' => 'Leave your review',
                 'cancel_reply_link' => 'Cancel review',
                 'label_submit' => 'Submit review',
-                'title_reply_to' => 'Leave a review to %s’'
+                'title_reply_to' => 'Leave a review to %s’',
+                'comment_field'        => sprintf(
+                    '<p class="comment-form-comment">%s %s</p>',
+                    sprintf(
+                        '<label for="comment">%s%s</label>',
+                        'Review',
+                        "*"
+                    ),
+                    '<textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required></textarea>'
+                ),
             ], $post);
         });
     }

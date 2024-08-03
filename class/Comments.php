@@ -20,7 +20,12 @@ class CustomCompanyAddonComment
     public function add_new_comment(){
         add_shortcode('add_new_comment', function(){
             $post = get_post(get_the_ID());
-            comment_form([], $post);
+            comment_form([
+                'title_reply' => 'Leave your review',
+                'cancel_reply_link' => 'Cancel review',
+                'label_submit' => 'Submit review',
+                'title_reply_to' => 'Leave a review to %s’'
+            ], $post);
         });
     }
 

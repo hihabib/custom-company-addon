@@ -5,7 +5,7 @@
 const companySearchResult = document.querySelector('#company_search_result');
 
 let isCompanySearchResultHovered = false;
-if(companySearchResult !== null){
+if (companySearchResult !== null) {
     companySearchResult.addEventListener('mouseover', () => {
         isCompanySearchResultHovered = true
     });
@@ -15,29 +15,33 @@ if(companySearchResult !== null){
 }
 
 /**
- * @type {HTMLInputElement | null}
+ * @type {NodeListOf<Element>}
  */
-const companySearchInput = document.querySelector('#company_search_form input');
-if (companySearchInput !== null) {
-    // clear all search result on focus out
-    companySearchInput.addEventListener('focusout', () => {
-        if (companySearchResult !== null && !isCompanySearchResultHovered) {
-            companySearchResult.innerHTML = '';
-        }
-    })
+const companySearchForms = document.querySelectorAll('.company_search_form');
+companySearchForms.forEach(companySearchForm => {
+    const companySearchInput = companySearchForm.querySelector('input');
+    if (companySearchInput !== null) {
+        // clear all search result on focus out
+        companySearchInput.addEventListener('focusout', () => {
+            if (companySearchResult !== null && !isCompanySearchResultHovered) {
+                companySearchResult.innerHTML = '';
+            }
+        })
 
-    // search company
+        // search company
 
-    companySearchInput.addEventListener('focus', searchCompanyAndAddResult);
-    companySearchInput.addEventListener('input', searchCompanyAndAddResult)
-}
+        companySearchInput.addEventListener('focus', searchCompanyAndAddResult);
+        companySearchInput.addEventListener('input', searchCompanyAndAddResult)
+    }
+})
+
 
 /**
  * Search Company and add search result to the dom
  * @param {Event} e
  */
 function searchCompanyAndAddResult(e) {
-    if(companySearchResult !== null){
+    if (companySearchResult !== null) {
         companySearchResult.innerHTML = `
                 <li>
                     <span class="company-search-loading">Loading...</span>
@@ -63,7 +67,7 @@ function addResults(companies) {
         // clear previous results
         companySearchResult.innerHTML = ``;
 
-        if(companies.length !== 0){
+        if (companies.length !== 0) {
             // add new results
             companies.forEach(({thumbnailUrl, title, permalink, exceprt}) => {
                 const li = document.createElement('li');
@@ -109,7 +113,7 @@ function debounce(fn, delay = 1000) {
         });
 
     };
-};
+}
 
 /**
  * Get Company Search Result

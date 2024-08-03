@@ -84,7 +84,7 @@ class CustomCompanyAddonCompany
         ?>
         <div class="company_search_container">
             <div>
-                <form action="#" id="company_search_form">
+                <form action="#" class="company_search_form" id="company_search_form">
                     <input placeholder="Search Company" type="text">
                 </form>
             </div>

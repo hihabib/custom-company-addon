@@ -122,7 +122,6 @@ class CustomCompanyAddonCompany
                 'custom_fields' => [
                     'country' => $fields['country']['value'],
                     'city' => $fields['city']['value'],
-                    'zip_code' => $fields['zipcode']['value'],
                     'email' => $fields['email']['value'],
                     'contact_number' => $fields['contactnumber']['value'],
                     'address' => $fields['address']['value'],

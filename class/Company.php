@@ -89,7 +89,7 @@ class CustomCompanyAddonCompany
                 </form>
             </div>
             <div style="position: relative">
-                <ul id="company_search_result">
+                <ul class="company_search_result" id="company_search_result">
 
                 </ul>
             </div>

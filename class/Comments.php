@@ -28,7 +28,7 @@ class CustomCompanyAddonComment
                 'comment_field'        => sprintf(
                     '<p class="comment-form-comment">%s %s</p>',
                     sprintf(
-                        '<label for="comment">%s%s</label>',
+                        '<label for="comment">%s %s</label>',
                         'Review',
                         "*"
                     ),

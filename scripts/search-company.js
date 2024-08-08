@@ -1,4 +1,4 @@
-function implementCompanySearch(parentElementId){
+function implementCompanySearch(parentElementId, isRedirectAllowed = false){
     /**
      *
      * @type {HTMLUListElement | null}
@@ -12,6 +12,11 @@ function implementCompanySearch(parentElementId){
         });
         companySearchResult.addEventListener('mouseout', () => {
             isCompanySearchResultHovered = false
+        });
+        companySearchResult.addEventListener('submit', (e) => {
+            if(!isRedirectAllowed){
+                e.preventDefault();
+            }
         });
     }
 

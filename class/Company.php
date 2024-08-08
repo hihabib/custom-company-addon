@@ -96,8 +96,8 @@ class CustomCompanyAddonCompany
         ?>
         <div class="company_search_container">
             <div>
-                <form action="#" class="company_search_form" id="company_search_form">
-                    <input placeholder="Search Company" type="text">
+                <form action="https://reportscammedfunds.com/company/" class="company_search_form" id="company_search_form">
+                    <input name="company_search" placeholder="Search Company" type="text">
                 </form>
             </div>
             <div style="position: relative">

@@ -14,7 +14,7 @@ class CustomCompanyAddonCompany
         add_action('elementor_pro/forms/new_record', [$this, 'handle_elementor_new_company_from_submission'], 10, 2);
 
         add_action('query_vars', [$this, "register_url_searching_vars"]);
-        add_action("elementor/query/company-search", [$this, "company_url_search"]);
+        add_action("elementor/query/company_search", [$this, "company_url_search"]);
     }
 
     public function register_url_searching_vars($vars){

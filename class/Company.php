@@ -12,8 +12,20 @@ class CustomCompanyAddonCompany
 
         // Elementor new company submission manupulate
         add_action('elementor_pro/forms/new_record', [$this, 'handle_elementor_new_company_from_submission'], 10, 2);
+
+        add_action('query_vars', [$this, "register_url_searching_vars"]);
+        add_action("pre_get_posts", [$this, "company_url_search"]);
     }
 
+    public function register_url_searching_vars($vars){
+        $vars[] = 'company_search';
+        return $vars;
+    }
+    public function company_url_search($query){
+        if(! is_admin() && $query->is_main_query() && isset($query->query_vars['query_id']) && $query->query_vars['query_id'] === 'company_search'){
+            $query -> set('s', get_query_var('company_search'));
+        }
+    }
     /**
      * Ajax call for company search result
      * @return void

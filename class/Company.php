@@ -23,7 +23,7 @@ class CustomCompanyAddonCompany
     }
     public function company_url_search($query){
         if(! is_admin() && $query->is_main_query() && isset($query->query_vars['query_id']) && $query->query_vars['query_id'] === 'company_search'){
-            $query -> set('s', get_query_var('company_search'));
+            $query -> set('s', "Home");
         }
     }
     /**

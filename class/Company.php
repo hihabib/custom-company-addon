@@ -22,7 +22,9 @@ class CustomCompanyAddonCompany
         return $vars;
     }
     public function company_url_search($query){
-        $query -> set('s', get_query_var('company_search'));
+        if(get_query_var('company_search') !== ''){
+            $query -> set('s', get_query_var('company_search'));
+        }
     }
     /**
      * Ajax call for company search result
